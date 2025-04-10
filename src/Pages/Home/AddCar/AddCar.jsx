@@ -1,3 +1,5 @@
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 import { useState } from "react";
 
 const AddCar = () => {
@@ -12,8 +14,20 @@ const AddCar = () => {
         location: "",
         bookingCount: 0,
     });
-
-    const handleChange = (e) => {
+   
+    const {isPending, mutateAsync} = useMutation({
+        mutationFn: async cars => {
+          await  axios.post('http://localhost:5000/cars', cars)
+        },
+        onSuccess : () =>{
+        //   return  alert("Successfully Data Send")
+        },
+        onError : () =>{
+        //    return alert("Err Occ");
+        }
+    })
+     
+    const handleChange = async (e)  => {
         e.preventDefault();
         const { name, value, type, checked } = e.target;
         setCarData({
@@ -24,6 +38,14 @@ const AddCar = () => {
         const allCarData = { ...carData }
         console.log(allCarData);
 
+
+        // all car Data send to database
+         try{
+           await mutateAsync(allCarData) 
+         } catch(err){
+            console.log(err.message);
+            
+         }
     }
 
     const inputStyle = "w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:border-orange-600 focus:ring-1 focus:ring-orange-600"
@@ -96,7 +118,7 @@ const AddCar = () => {
                     className="w-full border border-gray-300 p-2 rounded-md"
                     rows={3}
                 />
-                
+
                 {/* Booking Count (default 0) */}
                 <div>
                     <label className="block font-medium mb-1">Booking Count</label>
@@ -137,7 +159,7 @@ const AddCar = () => {
                     type="submit"
                     className="w-full bg-orange-600 text-white py-2 px-4 rounded-md hover:bg-orange-700 transition"
                 >
-                    Add Car
+                   {isPending ?  "Loading ....." : "Add Car"} 
                 </button>
             </form>
         </div>

@@ -5,7 +5,7 @@ import { IoMenu } from "react-icons/io5";
 
 const Navbar = () => {
     const [open, setOpen] = useState(false);
-    const [active, setActive] = useState('');
+    const [active, setActive] = useState('Home');
 
     const menuItems = [
         { name: "Home", link: "/" },
