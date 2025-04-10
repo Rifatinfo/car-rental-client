@@ -1,65 +1,65 @@
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { useState } from "react";
 
 const AddCar = () => {
-    const [carData, setCarData] = useState({
-        model: "",
-        pricePerDay: "",
-        available: true,
-        registrationNumber: "",
-        features: "",
-        description: "",
-        imageUrl: "",
-        location: "",
-        bookingCount: 0,
-    });
    
     const {isPending, mutateAsync} = useMutation({
         mutationFn: async cars => {
           await  axios.post('http://localhost:5000/cars', cars)
         },
         onSuccess : () =>{
-        //   return  alert("Successfully Data Send")
+          return  alert("Successfully Data Send")
         },
         onError : () =>{
-        //    return alert("Err Occ");
+           return alert("Err Occ");
         }
     })
      
-    const handleChange = async (e)  => {
-        e.preventDefault();
-        const { name, value, type, checked } = e.target;
-        setCarData({
-            ...carData,
-            [name]: type === 'checkbox' ? checked : value
-        })
+  
 
-        const allCarData = { ...carData }
-        console.log(allCarData);
-
-
-        // all car Data send to database
-         try{
-           await mutateAsync(allCarData) 
-         } catch(err){
-            console.log(err.message);
-            
+    const handleSubmit = async (e) =>{
+         e.preventDefault();
+         const form = e.target;
+         const model = form.model.value;
+         const features = form.features.value;
+         const description = form.description.value;
+         const pricePerDay = form.pricePerDay.value;
+         const imageUrl = form.imageUrl.value;
+         const registrationNumber = form.registrationNumber.value;
+         const available = form.available.checked
+          
+         const carInfo = {
+            model,
+            features,
+            description,
+            pricePerDay,
+            imageUrl,
+            registrationNumber,
+            available,
+            bookingCount : 0
          }
+
+         console.log(carInfo);
+        // all car Data send to database
+        try{
+            await mutateAsync(carInfo) 
+          } catch(err){
+             console.log(err.message);
+             
+          }
+         
     }
 
     const inputStyle = "w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:border-orange-600 focus:ring-1 focus:ring-orange-600"
     return (
         <div className="max-w-2xl mx-auto p-6 bg-white shadow-xl rounded-2xl mt-10">
             <h2 className="text-2xl font-bold text-center text-orange-600">Add New Car</h2>
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSubmit}>
                 {/* car model */}
                 <label className="block font-medium mb-1">Car Model</label>
                 <input type="text"
                     name="model"
                     className={inputStyle}
-                    value={carData.model}
-                    onChange={handleChange}
                     required />
 
                 {/* Daily Rental Price */}
@@ -68,8 +68,6 @@ const AddCar = () => {
                     <input
                         type="number"
                         name="pricePerDay"
-                        value={carData.pricePerDay}
-                        onChange={handleChange}
                         className={inputStyle}
                         required
                     />
@@ -79,7 +77,6 @@ const AddCar = () => {
                 <div className="flex items-center">
                     <input type="checkbox"
                         name="available"
-                        checked={carData.available}
                         className="mr-2 accent-amber-600"
                     />
                     <label className="font-medium">Available</label>
@@ -91,8 +88,6 @@ const AddCar = () => {
                     <input
                         type="text"
                         name="registrationNumber"
-                        value={carData.registrationNumber}
-                        onChange={handleChange}
                         className={inputStyle}
                         required
                     />
@@ -104,17 +99,14 @@ const AddCar = () => {
                     <input
                         type="text"
                         name="features"
-                        value={carData.features}
-                        onChange={handleChange}
                         className={inputStyle}
                     />
                 </div>
 
                 {/* description  */}
                 <textarea
+                    type="text"
                     name="description"
-                    value={carData.description}
-                    onChange={handleChange}
                     className="w-full border border-gray-300 p-2 rounded-md"
                     rows={3}
                 />
@@ -125,7 +117,6 @@ const AddCar = () => {
                     <input
                         type="number"
                         name="bookingCount"
-                        value={carData.bookingCount}
                         readOnly
                         className={`${inputStyle} bg-gray-100`}
                     />
@@ -137,8 +128,6 @@ const AddCar = () => {
                     <input
                         type="text"
                         name="imageUrl"
-                        value={carData.imageUrl}
-                        onChange={handleChange}
                         className={inputStyle}
                     />
                 </div>
@@ -149,8 +138,6 @@ const AddCar = () => {
                     <input
                         type="text"
                         name="location"
-                        value={carData.location}
-                        onChange={handleChange}
                         className={inputStyle}
                     />
                 </div>
