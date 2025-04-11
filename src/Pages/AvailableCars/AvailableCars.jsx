@@ -3,7 +3,7 @@ import axios from "axios";
 
 const AvailableCars = () => {
     const {data, isLoading} = useQuery({ queryKey: ['cars'], queryFn: async  () => {
-        const {data} = await axios.get('http://localhost:5000/all-cars')
+        const {data} = await axios.get('https://car-rental-server-gv71.onrender.com/all-cars')
         return data
     }})
     if(isLoading) return <div className="flex justify-center items-center h-screen text-9xl"><span className="text-orange-600 loading loading-bars loading-xl border"></span></div>
