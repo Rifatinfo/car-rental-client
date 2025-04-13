@@ -1,8 +1,10 @@
+import HeroSlider from "../HeroSlider/HeroSlider";
 
 const Hero = () => {
     return (
         <div>
-            <h1>hero Section Coming soon.........</h1>
+            <HeroSlider/>
+            
         </div>
     );
 };

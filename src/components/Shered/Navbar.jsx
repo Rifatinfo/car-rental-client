@@ -23,8 +23,8 @@ const Navbar = () => {
 
     return (
         <div>
-            <div>
-                <header className="max-w-7xl mx-auto sticky top-0 left-0 w-full flex justify-between items-center px-5 py-3  text-black  z-50">
+            <div className="fixed top-0 left-0 w-full z-50 bg-gradient-to-b from-black/100 to-transparent text-white ">
+                <header className="max-w-7xl mx-auto bg-transparent  w-full flex justify-between items-center px-5 py-3  text-white">
                     {/* logo */}
                     <div>
                         <img className="h-[40px] w-auto" src="" alt="logo" />
@@ -44,15 +44,15 @@ const Navbar = () => {
 
                     {/* button  */}
                     <div className="hidden md:flex items-center gap-3 font-semibold text-lg">
-                        <button className="btn px-8 rounded-md py-2 border-none bg-orange-600 text-white">Sign In</button>
-                        <button className="btn px-8 rounded-md py-2 border-none bg-orange-600 text-white">Register</button>
+                        <button className="btn px-8 rounded-md py-2 border-none bg-orange-600 text-white border-orange-600">Sign In</button>
+                        <button className="btn px-8 rounded-md py-2 border-none bg-orange-600 text-white border-orange-600">Register</button>
                     </div>
 
                     {/* mobile Menu Toggle Button  */}
                     <span className="lg:hidden block text-xl cursor-pointer mr-3"
                         onClick={() => setOpen(true)}
                     >
-                        <IoMenu />
+                        <IoMenu className="text-white" />
                     </span>
                 </header>
 
@@ -68,7 +68,7 @@ const Navbar = () => {
                     <span className="absolute top-4 right-6 text-3xl cursor-pointer"
                         onClick={() => setOpen(false)}
                     >
-                        <BiX />
+                        <BiX className="text-orange-600" />
                     </span>
 
                     {/* Mobile menu Item */}
