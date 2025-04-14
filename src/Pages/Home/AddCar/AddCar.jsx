@@ -5,7 +5,7 @@ const AddCar = () => {
    
     const {isPending, mutateAsync} = useMutation({
         mutationFn: async cars => {
-          await  axios.post('https://car-rental-server-gv71.onrender.com/cars', cars)
+          await  axios.post('http://localhost:5000/cars', cars)
         },
         onSuccess : () =>{
           return  alert("Successfully Data Send")

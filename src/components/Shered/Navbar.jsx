@@ -27,7 +27,8 @@ const Navbar = () => {
                 <header className="max-w-7xl mx-auto bg-transparent  w-full flex justify-between items-center px-5 py-3  text-white">
                     {/* logo */}
                     <div>
-                        <img className="h-[40px] w-auto" src="" alt="logo" />
+                        {/* <img className="h-[40px] w-auto" src="" alt="logo" /> */}
+                        <p className="text-3xl text-white font-bold">CARSHOW</p>
                     </div>
 
                     {/* desktop menu */}
@@ -44,8 +45,8 @@ const Navbar = () => {
 
                     {/* button  */}
                     <div className="hidden md:flex items-center gap-3 font-semibold text-lg">
-                        <button className="btn px-8 rounded-md py-2 border-none bg-orange-600 text-white border-orange-600">Sign In</button>
-                        <button className="btn px-8 rounded-md py-2 border-none bg-orange-600 text-white border-orange-600">Register</button>
+                        <button className="btn px-8 rounded-3xl py-2 border-2 shadow-none bg-orange-600 text-white border-orange-600">Sign In</button>
+                        <button className="btn px-8 rounded-3xl py-2 border-2 shadow-none bg-orange-600 text-white border-orange-600">Register</button>
                     </div>
 
                     {/* mobile Menu Toggle Button  */}

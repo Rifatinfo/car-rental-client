@@ -1,2 +1,15 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+
+
+
+.custom-swiper .swiper-pagination-bullet {
+    background: #fff; /* default (inactive) bullet color */
+    opacity: 0.7;
+  }
+  
+  .custom-swiper .swiper-pagination-bullet-active {
+    background: #ff3600; /* active bullet color (orange-500 as example) */
+    opacity: 1;
+  }
